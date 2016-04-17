@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" /> 
+    <title>Liste Rub </title>
+     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/myappesprit/css/show.css') }}"/> 
+</head>
+
+<body>
+ <div style="padding: 120px 50px 0 10px;position:relative; top:-20px;left:-20px; "> 
+     {% if  rubrique|length > 0  %} 
+<table class="bordered" >
+<thead>
+
+    <tr>
+       <th>#</th>              
+        <th>Position</th>
+        <th>State</th>
+        <th>Title</th>
+        <th>Menu associé</th>
+         <th>Nbr Article  </th>
+        <th>Nbr Sub.R  </th>
+        
+        
+    </tr>   
+</thead>
+</table>  
+     {% endif %} 
+</div> 
+         {% if  rubrique|length > 0  %}      
+   <div style="padding: 10px 50px 0 10px;position:relative; top:-20px;left:-70px; ">
+ 
+<center ><div style="height:175px;width:750px;border:0px solid #000000;font:20px/17px Georgia, Garamond, Serif;overflow:auto;">
+    
+<table class="bordered" >
+<thead>
+
+    <tr>
+       
+    </tr>
+    
+</thead>  
+     
+       {% for  rubrique  in  rubrique  %}
+     <tr>  
+       <th>{{ rubrique.id }}</th> 
+      
+        <td><b>No  </b>{{ rubrique.position}}</td>
+          {% if rubrique.state == 1 %}
+          <td><b>access</b></td>
+          {%  else    %}
+          <td><div id="Produit1"> denied</div></td>
+          {% endif  %}
+           <td>{{ rubrique.title | truncate(20, true, '...')}}</td>
+           <td><b> {{ rubrique.menu.title|capitalize}}</b></td>
+           
+           
+           
+           {#############}
+           {% set counter = 0 %}          
+           {% for  article  in  article if article.rubrique|length > 0  %}
+                    {% if rubrique.id ==article.rubrique.id  %} {% set counter = counter + 1 %}  {% endif  %}             
+           {% endfor %}
+           <td><b><h1>{{ counter }}</h1></b></td>
+             {#############}         
+           {% set counter2 = 0 %}          
+           {% for sousrubrique  in  sousrubrique if sousrubrique.rubrique|length > 0  %}
+                    {% if rubrique.id ==sousrubrique.rubrique.id  %} {% set counter2 = counter2 + 1 %}  {% endif  %}             
+           {% endfor %}
+             <td><b><h1>{{ counter2 }}</h1></b></td>     
+            {#############}     
+            
+            
+            
+        <td><a href="{{ path('my_app_esprit_rubrique_delete',{'id':rubrique.id}) }}">  <img src="{{ asset('bundles/myappesprit/images/delete.png') }}" alt="" />  </a></td>
+        <td><a href="{{ path('my_app_esprit_rubrique_edit',{'id':rubrique.id}) }}">  <img src="{{ asset('bundles/myappesprit/images/update.png') }}" alt="" />  </a></td>
+     
+        {% endfor %}
+         {% else %}
+          <div style="font:38px/15px Georgia, Garamond, Serif;"> 
+              <h2><p> (  rien  &agrave;   afficher )</p></h2> </div>
+
+         {% endif %} 
+    </tr>        
+    
+ 
+
+</table>
+    
+</div></center>
+    </div>
+<center><h2><a href="{{ path('my_app_esprit_rubrique_new') }} " style="text-decoration:none">
+       <div style="font:38px/15px Georgia, Garamond, Serif;">        
+            ajouter rubrique
+        </div>
+        
+        </a></h2></center>
+</br></br>
+<div style="font:38px/15px Georgia, Garamond, Serif;">
+ {% for flashMessage in app.session.flashbag.get('message') %}
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+{{ flashMessage }}
+{% endfor %}
+</div>
+
+
+
+</body>
+</html>

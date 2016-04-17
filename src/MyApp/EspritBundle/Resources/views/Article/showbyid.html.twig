@@ -1,0 +1,31 @@
+{% extends 'MyAppEspritBundle:Article:lister.html.twig' %}
+   {#//////////////////////////////////////////////////////////////////////////////////////////////#}      
+{% block article %}  
+ 
+<div class="item-inner">
+    <img src="{{ asset('upload/' ~ a.id ~'/' ~ a.image)}}" alt=""  width="511" height="333" class="img-responsive"  />                                        
+    <h5>
+       {{a.nom|capitalize}} - {{ a.date|date('d/m/Y')}}
+    </h5>
+    <small>{{a.texte|capitalize}}<cite title="Source Title">Source Title</cite></small>
+</div>
+ 
+{%endblock %}
+  {#//////////////////////////////////////////////////////////////////////////////////////////////#}      
+
+ {% block article1 %} 
+<div class="item-inner">
+    <img src="{{ asset('upload/' ~ a.id ~'/' ~ a.image)}}" alt=""  class="img-responsive"  />                                        
+
+    <h5>
+       {{a.nom|capitalize}} - {{ a.date|date('d/m/Y')}}
+    </h5>
+    <div class="overlay">
+        <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+    </div>
+</div>
+
+{% endblock  %}
+  {#//////////////////////////////////////////////////////////////////////////////////////////////#}      
+
+ 

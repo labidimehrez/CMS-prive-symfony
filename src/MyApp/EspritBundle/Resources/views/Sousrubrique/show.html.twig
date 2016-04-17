@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" /> 
+    <title>Liste SousRub </title>
+     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/myappesprit/css/show.css') }}"/> 
+</head>
+
+<body>
+ <div style="padding: 120px 50px 0 10px;position:relative; top:-20px;left:-70px; ">  
+  {% if  sousrubrique|length > 0  %}     
+<table class="bordered" >
+<thead>
+
+    <tr>
+      <th>#</th>              
+        <th>Position</th>
+        <th>State</th>
+        <th>Title</th>
+         <th>Rubrique associé</th>
+    </tr>   
+</thead>
+</table> 
+     {% endif  %}  
+</div> 
+         {% if  sousrubrique|length > 0  %}      
+   <div style="padding: 10px 50px 0 10px;position:relative; top:-20px;left:-70px; ">
+ 
+<center ><div style="height:125px;width:750px;border:0px solid #000000;font:20px/17px Georgia, Garamond, Serif;overflow:auto;">
+    
+<table class="bordered" >
+<thead>
+
+    <tr>
+       
+    </tr>
+    
+</thead>  
+     
+       {% for  sousrubrique  in  sousrubrique  %}
+     <tr>  
+       <th>{{ sousrubrique.id }}</th> 
+      
+        <td><b>No  </b>{{ sousrubrique.position}}</td>
+          {% if sousrubrique.state == 1 %}
+          <td><b>access</b></td>
+          {%  else    %}
+          <td><div id="Produit1"> denied</div></td>
+          {% endif  %}
+           <td>{{ sousrubrique.title | truncate(20, true, '...')}}</td>
+           <td><b>{{ sousrubrique.rubrique.title|capitalize}}</b></td>
+
+        <td><a href="{{ path('my_app_esprit_sousrubrique_delete',{'id':sousrubrique.id}) }}">  <img src="{{ asset('bundles/myappesprit/images/delete.png') }}" alt="" />  </a></td>
+        <td><a href="{{ path('my_app_esprit_sousrubrique_edit',{'id':sousrubrique.id}) }}">  <img src="{{ asset('bundles/myappesprit/images/update.png') }}" alt="" />  </a></td>
+     
+        {% endfor %}
+         {% else %}
+          <div style="font:38px/15px Georgia, Garamond, Serif;"> 
+              <h2><p> (  rien  &agrave;  afficher )</p></h2> </div>
+
+         {% endif %} 
+    </tr>        
+    
+ 
+
+</table>
+    
+</div></center>
+    </div>
+<center><h2><a href="{{ path('my_app_esprit_sousrubrique_new') }} " style="text-decoration:none">
+       <div style="font:38px/15px Georgia, Garamond, Serif;">        
+            ajouter sousrubrique
+        </div>
+        
+        </a></h2></center>
+</br></br>
+<div style="font:38px/15px Georgia, Garamond, Serif;">
+ {% for flashMessage in app.session.flashbag.get('message') %}
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+{{ flashMessage }}
+{% endfor %}
+</div>
+
+
+
+</body>
+</html>

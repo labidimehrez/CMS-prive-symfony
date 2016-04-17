@@ -1,0 +1,106 @@
+{% extends 'MyAppEspritBundle:Article:Template.html.twig' %}
+
+
+ {% block menu_gauche  %}       
+
+     
+<div id="content">
+
+	<ul class="menumenu"> {% for rubrique in rubrique  if rubrique.menu.id == 2 %}
+		<li class="item1menu"><a href="#">{{  rubrique.title|capitalize|trans }}<span>R</span></a>
+			<ul>
+                            
+                           {% for sousrubrique in sousrubrique if sousrubrique.rubrique|length > 0%}  
+                                 {% if sousrubrique.rubrique.id == rubrique.id %} 
+                            
+                                       {% for article in article if ( article.sousrubrique|length > 0 ) and (article.sousrubrique.id == sousrubrique.id ) %}                           
+	                      			<li class="subitem1menu"><a href="{{ path('my_app_esprit_article_voir',{'id':article.id}) }}">{{  sousrubrique.title|capitalize|trans }}<span>S</span></a></li>      
+                                       {% endfor %}
+                  
+                                  {%endif%}
+                           {% endfor %}
+                                
+                                
+                           {% for article in article if article.rubrique|length > 0%}  
+                                 {% if article.rubrique.id == rubrique.id %} 
+				<li class="subitem2menu"><a href="{{ path('my_app_esprit_article_voir',{'id':article.id}) }}">{% if article.role.id == 1 %}{{article.nom |capitalize}} 
+                                {% else %}<strike>{{article.nom|capitalize }}</strike>{% endif %}  <span>A</span></a></li>
+		                  {%endif%}
+                           {% endfor %}
+                                
+                                
+                                
+			</ul>
+		</li>
+		 
+		 
+		</li>
+	 {% endfor %}</ul>
+
+</div>
+
+
+
+
+{% endblock %}
+  {#//////////////////////////////////////////////////////////////////////////////////////////////#}      
+
+ {% block menu_haut  %} 
+     
+                    
+                    
+ {% for rubrique in rubrique  if rubrique.menu.id == 1 %}                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{  rubrique.title|capitalize|trans }}
+                         {% set counter = 0 %}     
+                            {% for sousrubrique in sousrubrique if sousrubrique.rubrique|length > 0%} 
+                            {% for article in article if article.rubrique|length > 0%} 
+                                    {% set counter = counter + 1 %}
+                            {% endfor %}
+                            {% endfor %}
+                            
+                          {%   if counter >= 1 %}  
+                          <i class="icon-angle-down"></i>
+                            {%endif%}
+                          
+                        </a>
+                        
+                        
+                        <ul class="dropdown-menu">
+                            
+                            {% for sousrubrique in sousrubrique if sousrubrique.rubrique|length > 0%}  
+                                      {% if sousrubrique.rubrique.id == rubrique.id %} 
+                             
+                                           {% for article in article if ( article.sousrubrique|length > 0 ) and (article.sousrubrique.id == sousrubrique.id ) %}                           
+	                      			<li><a href="{{ path('my_app_esprit_article_voir',{'id':article.id}) }}">{{  sousrubrique.title|capitalize|trans }}</a></li>      
+                                            {% endfor %}
+                            
+                                      {%endif%}
+                            {% endfor %}
+                            
+                            
+                            <li class="divider"></li>                      
+                             {% for article in article if article.rubrique|length > 0%}  
+                                    {% if article.rubrique.id == rubrique.id %} 
+                                      <li><a href="{{ path('my_app_esprit_article_voir',{'id':article.id}) }}">{% if article.role.id == 1 %}{{article.nom |capitalize}} 
+                                    {% else %}<strike>{{article.nom|capitalize }}</strike>{% endif %}</a></li>
+                                    {%endif%}
+                           {% endfor %}
+                            
+                                      
+                                      
+                                      
+                        </ul>
+                    </li>
+        {%endfor%}                
+{% endblock %}
+
+  {#//////////////////////////////////////////////////////////////////////////////////////////////#}      
+
+         {% block menu_droite  %}
+                  {% for menu in menu  %}       
+<li class="bg_list_un"><a href="#" style="text-decoration:none">{{ menu.title|capitalize }} </a></li>					 
+                  {%endfor%}
+           {% endblock %}
+
+

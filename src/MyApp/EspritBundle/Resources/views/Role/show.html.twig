@@ -1,0 +1,63 @@
+
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" /> 
+    <title>Liste Role </title>
+      <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/myappesprit/css/show.css') }}"/> 
+
+</head>
+
+<body>
+    <div style="padding: 120px 50px 0 10px;font:20px/17px Georgia, Garamond, Serif;">
+       
+<center >  
+                      
+{% if  role |length > 0  %}
+<table class="bordered" >
+    <thead>
+
+    <tr>
+        <th>#</th>              
+        <th>Permission</th>
+        
+    </tr>
+    </thead>
+   
+     {% for  role  in  role  %}
+     <tr>
+         <th>{{ role.id }}</th> 
+        
+         
+          {% if role.permission == 1 %}
+          <td><b>access</b></td>
+          {%  else    %}
+          <td><div id="Produit1"> denied</div></td>
+          {% endif  %}
+          
+        <td><a href="{{ path('my_app_esprit_role_delete',{'id':role.id}) }}">  <img src="{{ asset('bundles/myappesprit/images/delete.png') }}" alt="" />  </a></td>
+        <td><a href="{{ path('my_app_esprit_role_edit',{'id':role.id}) }}">  <img src="{{ asset('bundles/myappesprit/images/update.png') }}" alt="" />  </a></td>
+
+          {% endfor %}
+         {% else %}
+         <div style="font:38px/15px Georgia, Garamond, Serif;">  
+             
+             <h2><p> (  rien   &agrave;   afficher )</p></h2> </div>
+
+         {% endif %} 
+    </tr>        
+
+</table>    
+</div></center>
+    </div>
+<center><h2><a href="{{ path('my_app_esprit_role_new') }} " style="text-decoration:none">
+       <div style="font:38px/15px Georgia, Garamond, Serif;">        
+            ajouter r&ocirc;le
+        </div>
+        
+        </a></h2></center>
+</body>
+</html>
+ 
+   

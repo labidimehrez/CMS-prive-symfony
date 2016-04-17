@@ -1,0 +1,52 @@
+<html>
+    
+    
+    <head>
+         <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" /> 
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/myappesprit/css/stylemail.css') }}"/> 
+        <title>send mail</title>
+        {% javascripts '@MyAppEspritBundle/Resources/public/js/*' %}<script type="text/javascript" src="{{ asset_url }}"></script>{% endjavascripts %}
+    </head>
+    
+    
+    <body>
+        <div style="padding: 100px 50px 0 400px;width:450px;height:200px;  ">		 
+            <div>
+                <div id="footer" class="container">
+
+                    <div class="row">
+                        <section class="6u">
+               <form   action='{{path('my_app_esprit_sendmail')}}'  method="POST" >
+                                <div class="row collapse-at-2 half">
+                                    <div class="6u">
+                                   	<input name="Subject" placeholder="Subject" type="text" />                                  
+                                    </div>
+                                    <div class="6u">
+                                         	<input name="email" placeholder="email : lamehrez@yahoo.fr" type="text" />   
+                                    </div> 
+                                </div>
+                                <div class="row half">
+                                    <div class="12u">
+                                       	<textarea name="message" placeholder="message" type="text" ></textarea>  
+                                    </div>      
+                                </div>
+                                <div class="row half">
+                                    <div class="12u">      
+                                	<ul class="actions">
+					<li><input type="submit" value="Send Message" /></li>
+					<li><input type="reset" value="Clear form" /></li>
+					</ul>
+                                    </div>
+                                </div>
+                  </form>
+                        </section>
+                      
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+    
+    
+</html>

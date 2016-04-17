@@ -1,0 +1,133 @@
+my_app_esprit_top:
+    pattern:  /index.php 
+    defaults: { _controller: MyAppEspritBundle:Article:top } 
+    
+my_app_esprit_homepage:
+    pattern:  / 
+    defaults: { _controller: MyAppEspritBundle:Default:index }
+    
+my_app_esprit_administration:
+    pattern:  /administration 
+    defaults: { _controller: MyAppEspritBundle:Default:administration}    
+     #      routing       menu           #
+my_app_esprit_menu_new:
+    pattern:  /menu/new
+    defaults: { _controller: MyAppEspritBundle:Menu:send }
+my_app_esprit_menu_show:
+    pattern:  /menu/show
+    defaults: { _controller: MyAppEspritBundle:Menu:show }
+    requirements:
+        _method:  GET
+        id: \d+  
+my_app_esprit_menu_delete:
+    pattern:  /menu/{id}/delete
+    defaults: { _controller: MyAppEspritBundle:Menu:delete}
+    
+my_app_esprit_menu_edit:
+    pattern:  /menu/{id}/edit
+    defaults: { _controller: MyAppEspritBundle:Menu:edit}     
+    #      routing      article           #
+my_app_esprit_article_new:
+    pattern:  /article/new
+    defaults: { _controller: MyAppEspritBundle:Article:send }
+my_app_esprit_article_show:
+    pattern:  /article/show
+    defaults: { _controller: MyAppEspritBundle:Article:show }
+    requirements:
+        _method:  GET
+        id: \d+  
+my_app_esprit_article_delete:
+    pattern:  /article/{id}/delete
+    defaults: { _controller: MyAppEspritBundle:Article:delete}
+    
+my_app_esprit_article_edit:
+    pattern:  /article/{id}/edit
+    defaults: { _controller: MyAppEspritBundle:Article:edit}   
+      #      routing      actualite           #
+my_app_esprit_actualite_new:
+    pattern:  /actualite/new
+    defaults: { _controller: MyAppEspritBundle:Actualite:send }
+my_app_esprit_actualite_show:
+    pattern:  /actualite/show
+    defaults: { _controller: MyAppEspritBundle:Actualite:show }
+    requirements:
+        _method:  GET
+        id: \d+  
+my_app_esprit_actualite_delete:
+    pattern:  /actualite/{id}/delete
+    defaults: { _controller: MyAppEspritBundle:Actualite:delete}
+    
+my_app_esprit_actualite_edit:
+    pattern:  /actualite/{id}/edit
+    defaults: { _controller: MyAppEspritBundle:Actualite:edit}   
+          #      routing      rubrique           #
+my_app_esprit_rubrique_new:
+    pattern:  /rubrique/new
+    defaults: { _controller: MyAppEspritBundle:Rubrique:send }
+my_app_esprit_rubrique_show:
+    pattern:  /rubrique/show
+    defaults: { _controller: MyAppEspritBundle:Rubrique:show }
+    requirements:
+        _method:  GET
+        id: \d+  
+my_app_esprit_rubrique_delete:
+    pattern:  /rubrique/{id}/delete
+    defaults: { _controller: MyAppEspritBundle:Rubrique:delete}
+    
+my_app_esprit_rubrique_edit:
+    pattern:  /rubrique/{id}/edit
+    defaults: { _controller: MyAppEspritBundle:Rubrique:edit}   
+             #      routing      sousrubrique           #
+my_app_esprit_sousrubrique_new:
+    pattern:  /sousrubrique/new
+    defaults: { _controller: MyAppEspritBundle:Sousrubrique:send }
+my_app_esprit_sousrubrique_show:
+    pattern:  /sousrubrique/show
+    defaults: { _controller: MyAppEspritBundle:Sousrubrique:show }
+    requirements:
+        _method:  GET
+        id: \d+  
+my_app_esprit_sousrubrique_delete:
+    pattern:  /sousrubrique/{id}/delete
+    defaults: { _controller: MyAppEspritBundle:Sousrubrique:delete}
+    
+my_app_esprit_sousrubrique_edit:
+    pattern:  /sousrubrique/{id}/edit
+    defaults: { _controller: MyAppEspritBundle:Sousrubrique:edit}  
+                 #      routing      role           #
+my_app_esprit_role_new:
+    pattern:  /role/new
+    defaults: { _controller: MyAppEspritBundle:Role:send }
+my_app_esprit_role_show:
+    pattern:  /role/show
+    defaults: { _controller: MyAppEspritBundle:Role:show }
+    requirements:
+        _method:  GET
+        id: \d+  
+my_app_esprit_role_delete:
+    pattern:  /role/{id}/delete
+    defaults: { _controller: MyAppEspritBundle:Role:delete}
+    
+my_app_esprit_role_edit:
+    pattern:  /role/{id}/edit
+    defaults: { _controller: MyAppEspritBundle:Role:edit}  
+    #               fin du routing              #
+    
+    
+    
+      #       routing    special          #
+my_app_esprit_article_voir:
+    pattern:   /article/{id}/voir
+    defaults:  { _controller: MyAppEspritBundle:Article:showbyid }
+    requirements:
+        id:  \d+    
+ 
+    
+my_app_esprit_sendmail:
+    pattern:  /sendmail/
+    defaults: { _controller: MyAppEspritBundle:Mail:send } 
+    
+    
+myapp_choisir_langue:
+    pattern: /choisir-langue/{langue}
+    defaults: { _controller: MyAppEspritBundle:Default:choisirLangue }
